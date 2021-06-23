@@ -4,37 +4,11 @@ import { Helmet } from 'react-helmet';
 import CameraColumn from './components/cameracolumn/CameraColumn';
 import Map from './components/map/Map';
 
+import { Camera, State, EmptyState, apiGet } from './util';
+
 import './App.css';
 
-// Returns a Promise<State>
-const apiGet = () => {
-   const url = 'http://localhost:8000/';
-   return fetch(url, {})
-      .then(response => response)
-}
 
-type Record = {
-   number: number,
-   name: string,
-   lat: number,
-   lon: number
-}
-
-type State = {
-   column3: Record[],
-   column5: Record[],
-   column15: Record[],
-   columnOther: Record[],
-};
-
-const EmptyState = (): State => {
-   return {
-      column3: [],
-      column5: [],
-      column15: [],
-      columnOther: [],
-   }
-}
 
 function App() {
    // Define app state, we will save all the t
@@ -56,7 +30,7 @@ function App() {
                   return;
                }
                const values = line.split(' | ');
-               let record: Record = {
+               let record: Camera = {
                   number: parseInt(values[0]),
                   name: values[1],
                   lat: parseFloat(values[2]),
@@ -105,7 +79,9 @@ function App() {
          </Helmet>
 
          <h1>Security cameras Utrecht</h1>
-         <Map />
+         <Map
+            cameras={[...content.column3, ...content.column5, ...content.column15, ...content.columnOther]}
+         />
          <div id='source'>
             source:
             <a href="https://data.overheid.nl/data/dataset/camera-s">https://data.overheid.nl/data/dataset/camera-s</a>

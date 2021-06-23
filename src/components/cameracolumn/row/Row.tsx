@@ -1,24 +1,18 @@
 import React from 'react';
 
+import { Camera } from '../../../util';
+
 type RowProps = {
-   number: number,
-   name: string,
-   lat: number,
-   lon: number,
+   camera: Camera
 }
 
-function Row({
-   number,
-   name,
-   lat,
-   lon,
-}: RowProps) {
+function Row({ camera }: RowProps) {
    return (
       <tr>
-         <td>{number}</td>
-         <td>{name}</td>
-         <td>{lat}</td>
-         <td>{lon}</td>
+         <td>{camera.number}</td>
+         <td>{camera.name}</td>
+         <td>{camera.lat}</td>
+         <td>{camera.lon}</td>
       </tr >
    )
 }

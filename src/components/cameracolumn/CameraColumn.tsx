@@ -1,17 +1,14 @@
 import React from 'react';
 import Row from './row/Row';
 
+import { Camera } from '../../util';
+
 import './cameracolumn.css';
 
 type CamerColumnProps = {
    id: number | string,
    label: string,
-   content: {
-      number: number,
-      name: string,
-      lat: number,
-      lon: number
-   }[],
+   content: Camera[],
 }
 
 function CameraColumn({
@@ -36,10 +33,7 @@ function CameraColumn({
                   content.map((c, i) => (
                      <Row
                         key={i}
-                        number={c.number}
-                        name={c.name}
-                        lat={c.lat}
-                        lon={c.lon} />
+                        camera={c} />
                   ))
                }
             </thead>
