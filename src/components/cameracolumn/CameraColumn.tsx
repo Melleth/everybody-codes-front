@@ -3,6 +3,7 @@ import Row from './row/Row';
 
 type CamerColumnProps = {
    id: number | string,
+   label: string,
    content: {
       number: number,
       name: string,
@@ -14,13 +15,14 @@ type CamerColumnProps = {
 function CameraColumn({
    id,
    content,
+   label,
 }: CamerColumnProps) {
    return (
       <td>
          <table id={`column${id}`}>
             <thead>
                <tr>
-                  <th colSpan={4}>Cameras 3</th>
+                  <th colSpan={4}>{label}</th>
                </tr>
                <tr>
                   <th>Number</th>
@@ -29,12 +31,13 @@ function CameraColumn({
                   <th>Longitude</th>
                </tr>
                {
-                  content.map((i) => (
+                  content.map((c, i) => (
                      <Row
-                        number={i.number}
-                        name={i.name}
-                        lat={i.lat}
-                        lon={i.lon} />
+                        key={i}
+                        number={c.number}
+                        name={c.name}
+                        lat={c.lat}
+                        lon={c.lon} />
                   ))
                }
             </thead>
