@@ -1,0 +1,6 @@
+#cameraTableContainer table {
+  width: 450px;
+  margin: auto;
+  height: 100%;
+  border-collapse: collapse;
+}

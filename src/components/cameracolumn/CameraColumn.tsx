@@ -1,6 +1,8 @@
 import React from 'react';
 import Row from './row/Row';
 
+import './cameracolumn.css';
+
 type CamerColumnProps = {
    id: number | string,
    label: string,
