@@ -20,11 +20,18 @@ function Map({ cameras }: MapProps) {
             detectRetina={true}
             accessToken='pk.eyJ1IjoiaWh1Z2F0cmVlIiwiYSI6ImNrcTl6ank4ajAzbzYydmsxZXNpYnRwaGsifQ.HmRqJ6hmWqpwjits7U4u1g'
          />
-         <Marker position={[51.505, -0.09]}>
-            <Popup>
-               A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-         </Marker>
+
+         {
+            cameras.map((camera) => (
+               <Marker position={[camera.lat, camera.lon]}>
+                  <Popup>
+                     <h2>{camera.name}</h2>
+                     <p>Latitude: {camera.lat}</p>
+                     <p>Longitude: {camera.lon}</p>
+                  </Popup>
+               </Marker>
+            ))
+         }
       </MapContainer>
    )
 }
