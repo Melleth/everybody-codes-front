@@ -22,8 +22,10 @@ function Map({ cameras }: MapProps) {
          />
 
          {
-            cameras.map((camera) => (
-               <Marker position={[camera.lat, camera.lon]}>
+            cameras.map((camera, i) => (
+               <Marker
+                  key={i}
+                  position={[camera.lat, camera.lon]}>
                   <Popup>
                      <h2>{camera.name}</h2>
                      <p>Latitude: {camera.lat}</p>
