@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Camera } from '../../../util';
 
 type RowProps = {

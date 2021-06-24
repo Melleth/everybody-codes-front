@@ -1,11 +1,10 @@
-import React from 'react';
 import Row from './row/Row';
 
 import { Camera } from '../../util';
 
 import './cameracolumn.css';
 
-type CamerColumnProps = {
+type CameraColumnProps = {
    id: number | string,
    label: string,
    content: Camera[],
@@ -15,7 +14,7 @@ function CameraColumn({
    id,
    content,
    label,
-}: CamerColumnProps) {
+}: CameraColumnProps) {
    return (
       <td>
          <table id={`column${id}`}>

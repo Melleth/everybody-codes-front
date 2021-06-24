@@ -10,24 +10,24 @@ import './App.css';
 
 
 function App() {
-   // Define app state, we will save all the t
+   // Define app state, see util.ts for type
    const [content, setContent] = useState<State>(EmptyState);
 
    // Effect that sets the state from the API response.
    useEffect(() => {
       apiGet().then((response) => {
          response.text().then((text => {
-            // Define State that is wrapped by the Promise
+            // Define state object that we will fill with response data.
             let newState = EmptyState();
             const lines = text.split('\n');
 
-
-            // Parse response lines into Record, devide Records
+            // Parse response lines into Record, divide Records
             //    to their appropriate bins.
             lines.map((line) => {
                if (line === '') {
                   return;
                }
+
                const values = line.split(' | ');
                let record: Camera = {
                   number: parseInt(values[0]),
@@ -36,7 +36,7 @@ function App() {
                   lon: parseFloat(values[3]),
                }
 
-               // Devide records over the appropriate bins.
+               // Divide records over the appropriate bins.
                if (record.number % 3 === 0) {
                   if (record.number % 5 === 0) {
                      // Bin to 3 and 5
@@ -62,7 +62,6 @@ function App() {
 
    return (
       <div className='application'>
-
          <Helmet>
             <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
             <meta charSet="utf-8" />
@@ -75,13 +74,16 @@ function App() {
          </Helmet>
 
          <h1>Security cameras Utrecht</h1>
+
          <Map
             cameras={[...content.column3, ...content.column5, ...content.column15, ...content.columnOther]}
          />
+
          <div id='source'>
             source:
             <a href="https://data.overheid.nl/data/dataset/camera-s">https://data.overheid.nl/data/dataset/camera-s</a>
          </div>
+
          <main>
             <table id="cameraTableContainer">
                <tbody>

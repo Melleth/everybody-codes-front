@@ -5,6 +5,8 @@ export type Camera = {
    lon: number
 }
 
+// State tracks the different column
+// contents.
 export type State = {
    column3: Camera[],
    column5: Camera[],
@@ -12,6 +14,7 @@ export type State = {
    columnOther: Camera[],
 };
 
+// Helper fn that we use to initialize state
 export const EmptyState = (): State => {
    return {
       column3: [],
@@ -21,7 +24,7 @@ export const EmptyState = (): State => {
    }
 }
 
-// Returns a Promise<State>
+// Returns a Promise<Response>
 export const apiGet = () => {
    const url = 'http://localhost:8000/';
    return fetch(url, {})
